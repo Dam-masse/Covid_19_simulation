@@ -15,6 +15,7 @@ min_sick_time=5000
 
 probability_of_contagious=0.1
 probability_of_healing=0.001
+
 def collision(p1,p2):
     tmp_array=p1.speed_array
     p1.speed_array=p2.speed_array
