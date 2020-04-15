@@ -27,7 +27,7 @@ def collision(p1,p2):
             p2.state='sick'
 
 
-color_dic={'fine':[0,255,0],'sick':[255,0,0],'heal':[0,0,255],'death':[255,255,255]}
+color_dic={'fine':[0,255,0],'sick':[255,0,0],'heal':[0,0,255],'death':[0,0,0]}
 
 
 class person():
