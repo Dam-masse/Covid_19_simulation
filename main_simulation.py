@@ -9,7 +9,7 @@ length=800
 WHITE=[255,255,255]
 BLACK=[0,0,0]
 
-milan=city.city(N=100,simulation_timer=15000,show=False)
+milan=city.city(N=200,simulation_timer=15000,show=True)
 
 milan.run_simulation()
 data=milan.results

@@ -2,8 +2,8 @@ import numpy as np
 import pygame
 import person
 
-width=800
-length=800
+width=1000
+length=1000
 
 WHITE=[255,255,255]
 BLACK=[0,0,0]
@@ -12,13 +12,14 @@ BLACK=[0,0,0]
 
 
 class city():
-    def __init__(self, N=100 ,simulation_timer=10000, show=True):
+    def __init__(self, N=100 ,simulation_timer=10000, show=True, allowed_to_move=0.1):
         self.N=N
-        self.person_list=[person.person() for pg in range(self.N)]
+        self.person_list=[person.person(movement=np.random.random()<allowed_to_move) for pg in range(self.N)]
         self.person_list[0].state='sick'
         self.results=np.array([self.N-1,1,0])
         self.simulation_time=simulation_timer
         self.show=show
+        self.moving=allowed_to_move
 
     def run_simulation(self):
 
@@ -31,7 +32,9 @@ class city():
 
             self.possible_collision()
             for pg in self.person_list:
-                pg.movement()
+                pg.healing()
+                if pg.can_move:
+                    pg.movement()
                 if self.show:
                     pg.draw(screen)
             if self.show:

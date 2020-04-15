@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 
 import pygame
 
-x_max=800
-y_max=800
+x_max=1000
+y_max=1000
 
 WHITE=[255,255,255]
 BLACK=[0,0,0]
@@ -32,7 +32,7 @@ color_dic={'fine':[0,255,0],'sick':[255,0,0],'heal':[0,0,255],'death':[255,255,2
 
 class person():
 
-    def __init__(self):
+    def __init__(self,movement):
 
         self.x=np.random.randint(0,x_max/10)*10
         self.y=np.random.randint(0,y_max/10)*10
@@ -41,6 +41,7 @@ class person():
         self.speed_array=np.array([self.speed*np.cos(self.angle),self.speed*np.sin(self.angle)])
         self.state='fine' # 'fine','sick','heal'
         self.sick_time=0
+        self.can_move=movement
 
     def draw(self, screen):
         #drawing function screen is a surface in pygame
@@ -59,7 +60,7 @@ class person():
 
         self.x=self.x+self.speed_array[0]
         self.y=self.y+self.speed_array[1]
-        self.healing()
+        #self.healing()
 
     def healing(self):
         if self.state=='sick':
@@ -67,5 +68,8 @@ class person():
             if self.sick_time>min_sick_time:
                 if np.random.random()<probability_of_healing:
                     self.state='heal'
+                elif np.random.random()<probability_of_healing:
+                    self.state='death'
+                    self.can_move=False
 
 
