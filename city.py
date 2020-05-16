@@ -61,12 +61,13 @@ class city():
         self.results=np.c_[self.results,result_time]
 
     def possible_collision(self):
+        min_dist=(person.radius_ball * 2)**2
         for i in range(self.N):
             j=i+1
             while j<self.N:
                 p1=self.person_list[i]
                 p2=self.person_list[j]
-                if np.abs(p1.x-p2.x)<person.radius_ball*2 and np.abs(p1.y-p2.y)<person.radius_ball*2:
+                if (p1.x-p2.x)**2+(p1.y-p2.y)**2<min_dist:
                     person.collision(p1,p2)
                 j+=1
 
